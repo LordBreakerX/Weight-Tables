@@ -1,0 +1,19 @@
+{
+    "name": "Nathanielh2013.Weighttables.Editor",
+    "rootNamespace": "LordBreakerX.Tables",
+    "references": [
+        "LordBreakerX.WeightTables",
+        "LordBreakerX.EditorUtilities"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
