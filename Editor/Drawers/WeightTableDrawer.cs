@@ -43,6 +43,9 @@ namespace LordBreakerX.Tables
 
             root.Add(splitView);
 
+            UpdateTotalWeight();
+            UpdateListView();
+
             return root;
         }
 
@@ -112,6 +115,8 @@ namespace LordBreakerX.Tables
 
                         _entriesProperty.serializedObject.ApplyModifiedProperties();
 
+                        UpdateTotalWeight();
+
                         UpdateListView();
                     }
                 });
@@ -160,6 +165,8 @@ namespace LordBreakerX.Tables
 
             _entriesProperty.serializedObject.ApplyModifiedProperties();
 
+            UpdateTotalWeight();
+
             UpdateListView();
         }
 
@@ -186,12 +193,16 @@ namespace LordBreakerX.Tables
 
             weightField.RegisterValueChangeCallback((evt) =>
             {
+                UpdateTotalWeight();
                 UpdateListView();
+                
             });
 
             valueField.RegisterValueChangeCallback((evt) =>
             {
+                UpdateTotalWeight();
                 UpdateListView();
+                
             });
 
             entryRoot.Add(weightField);
@@ -202,6 +213,23 @@ namespace LordBreakerX.Tables
             return entryRoot;
         }
 
+
+        private void UpdateTotalWeight() 
+        {
+            int totalWeight = 0;
+
+            for (int i = 0; i < _entriesProperty.arraySize; i++)
+            {
+                SerializedProperty entryProperty = _entriesProperty.GetArrayElementAtIndex(i);
+                SerializedProperty weightProperty = entryProperty.FindPropertyRelative("_weight");
+
+                totalWeight += weightProperty.intValue;
+            }
+
+            _totalWieghtProperty.intValue = totalWeight;
+
+            _entriesProperty.serializedObject.ApplyModifiedProperties();
+        }
 
     }
 }
