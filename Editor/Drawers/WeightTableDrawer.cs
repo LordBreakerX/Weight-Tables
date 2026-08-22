@@ -135,13 +135,18 @@ namespace LordBreakerX.Tables
             SerializedProperty entryValueProperty = entryProperty.FindPropertyRelative("_value");
             SerializedProperty weightProperty = entryProperty.FindPropertyRelative("_weight");
 
+            float weight = weightProperty.intValue;
+            float totalWeight = _totalWieghtProperty.intValue;
+
+            float percentage = weight / totalWeight * 100;
+
             if (entryValueProperty.propertyType == SerializedPropertyType.ObjectReference && entryValueProperty.objectReferenceValue != null)
             {
-                return entryValueProperty.objectReferenceValue.name;
+                return $"{entryValueProperty.objectReferenceValue.name} --- {percentage:F2}%";
             }
             else
             {
-                return $"Element {entryIndex}";
+                return $"Element {entryIndex} --- {percentage:F2}%";
             }
         }
 
