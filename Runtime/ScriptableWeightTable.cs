@@ -6,7 +6,7 @@ namespace LordBreakerX.Tables
     public abstract class ScriptableWeightTable<T> : ScriptableObject, IWeightTable<T> where T : class
     {
         [SerializeField]
-        private WeightTable<T> _table;
+        private WeightTable<T> _table = new WeightTable<T>();
 
         public bool HasEntries => _table.HasEntries;
 
